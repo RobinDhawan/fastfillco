@@ -1,1 +1,0 @@
-web: java -jar target/fastfillco-0.0.1-SNAPSHOT.jar
