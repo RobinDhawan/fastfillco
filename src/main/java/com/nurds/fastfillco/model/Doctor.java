@@ -27,6 +27,7 @@ public class Doctor extends ResponseObject{
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   
+  @Id
   @NotNull
   private String username;
   
