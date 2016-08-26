@@ -56,11 +56,10 @@ public class DoctorMedicineDao {
   /**
    * Return the user having the passed email.
    */
-  public Doctor login(String username,String password) {
-    return (Doctor) entityManager.createQuery(
-        "from Doctor where username = :username and password = :password")
-        .setParameter("username", username)
-        .setParameter("password", password)
+  public DoctorMedicine getMedicineDetail(long id) {
+    return (DoctorMedicine) entityManager.createQuery(
+        "from DoctorMedicine where id = :id")
+        .setParameter("id", id)
         .getSingleResult();
   }
 

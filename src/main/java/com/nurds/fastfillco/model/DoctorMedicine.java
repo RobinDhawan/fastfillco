@@ -8,20 +8,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+import com.nurds.fastfillco.ResponseObject;
 
 /**
  * Represents an User for this web application.
  */
 @Entity
 @Table(name = "medicine")
-public class DoctorMedicine implements Serializable{
+public class DoctorMedicine extends ResponseObject implements Serializable {
 
   /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	  @GeneratedValue(strategy = GenerationType.AUTO)
+	  private long id;
 @Id
   private String medicineName;
   

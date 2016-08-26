@@ -71,6 +71,26 @@ public class UserController {
 		res.setObject(doc);
 		return res;
 	}
+	
+	@RequestMapping(value="/getdoctorMedicineDetails")
+	@ResponseBody
+	public Response getMedicineDetails(long id) {
+	
+		Response res = new Response();
+		DoctorMedicine doc = null;
+		try {
+
+			doc = docMedicineDao.getMedicineDetail(id);
+		}
+		catch (Exception ex) {
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		res.setObject(doc);
+		return res;
+	}
 
 	@RequestMapping(value="/doctormedicine/create")
 	@ResponseBody
