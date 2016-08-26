@@ -38,6 +38,7 @@ public class UserController {
 			userDao.create(doctor);
 		}
 		catch (Exception ex) {
+			System.out.println(ex);
 			res.setResponseCode("500");
 			res.setError("Register Failed");
 			return res;
@@ -63,6 +64,7 @@ public class UserController {
 			doc = userDao.login(username, password);
 		}
 		catch (Exception ex) {
+			System.out.println(ex);
 			res.setResponseCode("500");
 			res.setError("Login Failed");
 			return res;
@@ -83,6 +85,7 @@ public class UserController {
 			doc = docMedicineDao.getMedicineDetail(id);
 		}
 		catch (Exception ex) {
+			System.out.println(ex);
 			res.setResponseCode("500");
 			res.setError("Login Failed");
 			return res;
@@ -102,6 +105,7 @@ public class UserController {
 			docMedicineDao.create(medicine);
 		}
 		catch (Exception ex) {
+			System.out.println(ex);
 			res.setResponseCode("500");
 			res.setError("Medicine Creation Failed");
 			return res;
