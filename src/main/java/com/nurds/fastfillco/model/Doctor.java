@@ -128,8 +128,7 @@ public void setClinicName(String clinicName) {
 public Doctor(long id) { 
     this.id = id;
   }
-  
-  
+   
 
   @Override
 public String toString() {

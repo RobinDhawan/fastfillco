@@ -75,7 +75,7 @@ public class UserController {
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
 	public Response getMedicineDetails(long id) {
-	
+		System.out.println("id"+id);
 		Response res = new Response();
 		DoctorMedicine doc = null;
 		try {
