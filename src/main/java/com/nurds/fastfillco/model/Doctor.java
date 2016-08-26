@@ -1,5 +1,6 @@
 package com.nurds.fastfillco.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,13 +18,18 @@ import com.nurds.fastfillco.ResponseObject;
  */
 @Entity
 @Table(name = "doctor")
-public class Doctor extends ResponseObject{
+public class Doctor extends ResponseObject implements Serializable {
 
   // ------------------------
   // PRIVATE FIELDS
   // ------------------------
   
-  @Id
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+@Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   
