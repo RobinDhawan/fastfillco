@@ -98,7 +98,7 @@ public class UserController {
 		System.out.println(medicine);
 		Response res = new Response();
 		try {
-
+			
 			docMedicineDao.create(medicine);
 		}
 		catch (Exception ex) {

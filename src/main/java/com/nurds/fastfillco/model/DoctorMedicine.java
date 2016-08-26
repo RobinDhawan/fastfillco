@@ -150,6 +150,37 @@ public String getCouponsExpiryDate() {
 public void setCouponsExpiryDate(String couponsExpiryDate) {
 	this.couponsExpiryDate = couponsExpiryDate;
 }
+
+public long getId() {
+	return id;
+}
+
+public void setId(long id) {
+	this.id = id;
+}
+
+public Doctor getDoctor() {
+	return doctor;
+}
+
+public void setDoctor(Doctor doctor) {
+	this.doctor = doctor;
+}
+
+@Override
+public String toString() {
+	return "DoctorMedicine [id=" + id + ", medicineName=" + medicineName
+			+ ", expiryDate=" + expiryDate + ", mClass=" + mClass
+			+ ", subClass=" + subClass + ", numPillPerBox=" + numPillPerBox
+			+ ", numOfBoxes=" + numOfBoxes + ", lotNumber=" + lotNumber
+			+ ", locationSample=" + locationSample + ", numVoucher="
+			+ numVoucher + ", voucherInsurance=" + voucherInsurance
+			+ ", voucherExpiryDate=" + voucherExpiryDate
+			+ ", couponsExpiryDate=" + couponsExpiryDate + ", doctor=" + doctor
+			+ "]";
+}
+
+
   
   // ------------------------
   // PUBLIC METHODS

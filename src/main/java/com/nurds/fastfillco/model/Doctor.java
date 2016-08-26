@@ -131,7 +131,15 @@ public Doctor(long id) {
   
   
 
-  public long getId() {
+  @Override
+public String toString() {
+	return "Doctor [id=" + id + ", username=" + username + ", firstName="
+			+ firstName + ", lastName=" + lastName + ", password=" + password
+			+ ", mobileNumber=" + mobileNumber + ", speciality=" + speciality
+			+ ", clinicName=" + clinicName + ", medicines=" + medicines + "]";
+}
+
+public long getId() {
     return id;
   }
 
