@@ -64,7 +64,14 @@ public class UserDao {
         .getSingleResult();
   }
 
-  
+  public Doctor getDoctor(String username) {
+	    return (Doctor) entityManager.createQuery(
+	        "from Doctor where username = :username ")
+	        .setParameter("username", username)
+	        .getSingleResult();
+	  }
+
+	  
 
   // ------------------------
   // PRIVATE FIELDS

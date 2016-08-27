@@ -56,11 +56,11 @@ public class DoctorMedicineDao {
   /**
    * Return the user having the passed email.
    */
-  public DoctorMedicine getMedicineDetail(long id) {
-    return (DoctorMedicine) entityManager.createQuery(
-        "from DoctorMedicine where id = :id")
-        .setParameter("id", id)
-        .getSingleResult();
+  public List<DoctorMedicine> getMedicineDetail(String userName) {
+    return entityManager.createQuery(
+        "from DoctorMedicine where doctor.username = :username")
+        .setParameter("username", userName)
+        .getResultList();
   }
 
   

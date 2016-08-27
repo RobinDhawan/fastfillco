@@ -29,10 +29,7 @@ public class Doctor extends ResponseObject implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-@Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
-  
+ 
   @Id
   @NotNull
   private String username;
@@ -125,26 +122,18 @@ public void setClinicName(String clinicName) {
 	this.clinicName = clinicName;
 }
 
-public Doctor(long id) { 
-    this.id = id;
-  }
-   
-
-  @Override
+@Override
 public String toString() {
-	return "Doctor [id=" + id + ", username=" + username + ", firstName="
-			+ firstName + ", lastName=" + lastName + ", password=" + password
+	return "Doctor [username=" + username + ", firstName=" + firstName
+			+ ", lastName=" + lastName + ", password=" + password
 			+ ", mobileNumber=" + mobileNumber + ", speciality=" + speciality
 			+ ", clinicName=" + clinicName + ", medicines=" + medicines + "]";
 }
 
-public long getId() {
-    return id;
-  }
+   
 
-  public void setId(long value) {
-    this.id = value;
-  }
+
+
 
   
 } // class User

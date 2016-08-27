@@ -26,10 +26,10 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
 	@Id
 	  @GeneratedValue(strategy = GenerationType.AUTO)
 	  private long id;
-@Id
+
   private String medicineName;
   
-  @Id 
+   
   private String expiryDate;
   
   private String mClass;

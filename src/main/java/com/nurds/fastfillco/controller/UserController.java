@@ -1,5 +1,8 @@
 package com.nurds.fastfillco.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nurds.fastfillco.DoctorMedcineResponse;
+import com.nurds.fastfillco.DoctorMedicineRequest;
 import com.nurds.fastfillco.Response;
 import com.nurds.fastfillco.ResponseString;
 import com.nurds.fastfillco.model.Doctor;
@@ -76,13 +81,12 @@ public class UserController {
 	
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
-	public Response getMedicineDetails(long id) {
-		System.out.println("id"+id);
+	public Response getMedicineDetails(String userName) {
 		Response res = new Response();
-		DoctorMedicine doc = null;
+		List<DoctorMedicine> docList = null;
 		try {
 
-			doc = docMedicineDao.getMedicineDetail(id);
+			docList = docMedicineDao.getMedicineDetail(userName);
 		}
 		catch (Exception ex) {
 			System.out.println(ex);
@@ -90,15 +94,32 @@ public class UserController {
 			res.setError("Login Failed");
 			return res;
 		}
+		DoctorMedcineResponse resp = new DoctorMedcineResponse();
+		resp.setMedicines(docList);
 		res.setResponseCode("200");
-		res.setObject(doc);
+		res.setObject(resp);
 		return res;
 	}
 
 	@RequestMapping(value="/doctormedicine/create")
 	@ResponseBody
-	public Response createDocMedicine(@RequestBody DoctorMedicine medicine) {
-		System.out.println(medicine);
+	public Response createDocMedicine(@RequestBody DoctorMedicineRequest medicineReq) {
+		System.out.println(medicineReq);
+		Doctor doc = userDao.getDoctor(medicineReq.getUserName());
+		DoctorMedicine medicine = new DoctorMedicine();
+		medicine.setCouponsExpiryDate(medicineReq.getCouponsExpiryDate());
+		medicine.setDoctor(doc);
+		medicine.setExpiryDate(medicineReq.getExpiryDate());
+		medicine.setLocationSample(medicineReq.getLocationSample());
+		medicine.setLotNumber(medicineReq.getLotNumber());
+		medicine.setmClass(medicineReq.getmClass());
+		medicine.setMedicineName(medicineReq.getMedicineName());
+		medicine.setNumOfBoxes(medicineReq.getNumOfBoxes());
+		medicine.setNumPillPerBox(medicineReq.getNumPillPerBox());
+		medicine.setNumVoucher(medicineReq.getNumVoucher());
+		medicine.setSubClass(medicineReq.getSubClass());
+		medicine.setVoucherExpiryDate(medicineReq.getVoucherExpiryDate());
+		medicine.setVoucherInsurance(medicineReq.getVoucherInsurance());
 		Response res = new Response();
 		try {
 			
@@ -112,7 +133,7 @@ public class UserController {
 		}
 		res.setResponseCode("200");
 		ResponseString str = new ResponseString();
-		str.setResponse("Medicine Allocated Successfully");
+		str.setResponse("Medicine created successfully");
 		return res;
 	}
 
