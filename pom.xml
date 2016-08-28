@@ -29,8 +29,8 @@
     </dependency>
 <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
 <dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
+    <groupId>postgresql</groupId>
+    <artifactId>postgresql</artifactId>
 </dependency>
   </dependencies>
 
