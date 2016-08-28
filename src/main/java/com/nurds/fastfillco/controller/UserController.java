@@ -86,7 +86,7 @@ public class UserController {
 		List<DoctorMedicine> docList = null;
 		try {
 
-			docList = docMedicineDao.getMedicineDetail(userName);
+			docList = docMedicineDao.getMedicineDetails(userName);
 		}
 		catch (Exception ex) {
 			System.out.println(ex);
@@ -101,6 +101,47 @@ public class UserController {
 		return res;
 	}
 
+	@RequestMapping(value="/getdoctorMedicineDetail")
+	@ResponseBody
+	public Response getMedicineDetail(long id) {
+		Response res = new Response();
+		DoctorMedicine docList = null;
+		try {
+
+			docList = docMedicineDao.getMedicineDetail(id);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		res.setObject(docList);
+		return res;
+	}
+	@RequestMapping(value="/updatedoctorMedicineDetail")
+	@ResponseBody
+	public Response updateMedicineDetail(@RequestBody DoctorMedicine doc) {
+		Response res = new Response();
+		DoctorMedicine docList = null;
+		try {
+
+			docMedicineDao.updateMedicineDetails(doc);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseString str = new ResponseString();
+		str.setResponse("Medicine succesfully updated!");
+		res.setObject(str);
+		return res;
+	}
+	
 	@RequestMapping(value="/doctormedicine/create")
 	@ResponseBody
 	public Response createDocMedicine(@RequestBody DoctorMedicineRequest medicineReq) {

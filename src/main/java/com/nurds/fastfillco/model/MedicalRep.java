@@ -1,5 +1,7 @@
 package com.nurds.fastfillco.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,16 +39,12 @@ public class MedicalRep {
   
   private String companyName;
   
- 
-
-  // ------------------------
-  // PUBLIC METHODS
-  // ------------------------
-  	
   
   public MedicalRep() { }
 
-  public String getUsername() {
+ 
+
+public String getUsername() {
 	return username;
 }
 

@@ -20,7 +20,7 @@ public class DoctorMedicineRequest {
 	  
 	  private String locationSample;
 	  
-	  private int numVoucher;
+	  private String numVoucher;
 	  
 	  private String voucherInsurance;
 	  
@@ -94,11 +94,11 @@ public class DoctorMedicineRequest {
 		this.locationSample = locationSample;
 	}
 
-	public int getNumVoucher() {
+	public String getNumVoucher() {
 		return numVoucher;
 	}
 
-	public void setNumVoucher(int numVoucher) {
+	public void setNumVoucher(String numVoucher) {
 		this.numVoucher = numVoucher;
 	}
 

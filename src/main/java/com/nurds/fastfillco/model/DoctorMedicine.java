@@ -3,12 +3,15 @@ package com.nurds.fastfillco.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nurds.fastfillco.ResponseObject;
 
 /**
@@ -36,6 +39,8 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
   
   private String subClass;
   
+  private String medicineInsurance;
+  
   private String numPillPerBox;
   
   private String numOfBoxes;
@@ -44,7 +49,7 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
   
   private String locationSample;
   
-  private int numVoucher;
+  private String numVoucher;
   
   private String voucherInsurance;
   
@@ -52,12 +57,31 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
   
   private String couponsExpiryDate;
   
-  @ManyToOne
+  private String numCoupons;
+  
+  @JsonIgnore
+  @ManyToOne(fetch=FetchType.LAZY)
   private Doctor doctor;
 
   public String getMedicineName() {
 	return medicineName;
   }
+
+public String getMedicineInsurance() {
+	return medicineInsurance;
+}
+
+public void setMedicineInsurance(String medicineInsurance) {
+	this.medicineInsurance = medicineInsurance;
+}
+
+public String getNumCoupons() {
+	return numCoupons;
+}
+
+public void setNumCoupons(String numCoupons) {
+	this.numCoupons = numCoupons;
+}
 
 public void setMedicineName(String medicineName) {
 	this.medicineName = medicineName;
@@ -119,11 +143,11 @@ public void setLocationSample(String locationSample) {
 	this.locationSample = locationSample;
 }
 
-public int getNumVoucher() {
+public String getNumVoucher() {
 	return numVoucher;
 }
 
-public void setNumVoucher(int numVoucher) {
+public void setNumVoucher(String numVoucher) {
 	this.numVoucher = numVoucher;
 }
 

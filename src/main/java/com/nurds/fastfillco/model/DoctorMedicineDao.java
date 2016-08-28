@@ -56,14 +56,32 @@ public class DoctorMedicineDao {
   /**
    * Return the user having the passed email.
    */
-  public List<DoctorMedicine> getMedicineDetail(String userName) {
+  public List<DoctorMedicine> getMedicineDetails(String userName) {
     return entityManager.createQuery(
         "from DoctorMedicine where doctor.username = :username")
         .setParameter("username", userName)
         .getResultList();
   }
-
   
+  public void updateMedicineDetails(DoctorMedicine medicine) {
+	  	DoctorMedicine med = getMedicineDetail(medicine.getId());
+	  	if(medicine.getNumOfBoxes()!=null)
+	  	med.setNumOfBoxes(medicine.getNumOfBoxes());
+	  	if(medicine.getNumVoucher()!=null)
+		  	med.setNumVoucher(medicine.getNumVoucher());
+	  	if(medicine.getNumOfBoxes()!=null)
+		  	med.setNumCoupons(medicine.getNumCoupons());
+	    entityManager.merge(med);
+	    return;
+	  }
+
+  public DoctorMedicine getMedicineDetail(long id) {
+	    return (DoctorMedicine) entityManager.createQuery(
+	        "from DoctorMedicine where id = :id")
+	        .setParameter("id", id)
+	        .getSingleResult();
+	  }
+
 
   // ------------------------
   // PRIVATE FIELDS
