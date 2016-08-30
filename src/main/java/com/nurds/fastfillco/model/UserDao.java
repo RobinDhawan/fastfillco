@@ -33,7 +33,11 @@ public class UserDao {
    entityManager.persist(doctor);
     return;
   }
-  
+ 
+  public void createMr(MedicalRep mr) {
+	   entityManager.persist(mr);
+	    return;
+	  }
   /**
    * Delete the user from the database.
    */
@@ -64,6 +68,13 @@ public class UserDao {
         .getSingleResult();
   }
 
+  public MedicalRep loginMr(String username,String password) {
+	    return (MedicalRep) entityManager.createQuery(
+	        "from MedicalRep where username = :username and password = :password")
+	        .setParameter("username", username)
+	        .setParameter("password", password)
+	        .getSingleResult();
+	  }
   public Doctor getDoctor(String username) {
 	    return (Doctor) entityManager.createQuery(
 	        "from Doctor where username = :username ")

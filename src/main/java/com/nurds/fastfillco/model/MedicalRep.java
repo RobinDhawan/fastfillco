@@ -1,26 +1,40 @@
 package com.nurds.fastfillco.model;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.nurds.fastfillco.ResponseObject;
+
 
 /**
  * Represents an User for this web application.
  */
 @Entity
 @Table(name = "medicalRep")
-public class MedicalRep {
+public class MedicalRep extends ResponseObject implements Serializable{
 
   // ------------------------
   // PRIVATE FIELDS
   // ------------------------
   
-  @Id
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+@Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   
@@ -35,12 +49,28 @@ public class MedicalRep {
   @NotNull
   private String password;
   
-  private int mobileNumber;
+  private String mobileNumber;
   
   private String companyName;
   
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private List<Doctor> doctors;
   
-  public MedicalRep() { }
+  
+  
+  public List<Doctor> getDoctors() {
+	return doctors;
+}
+
+
+
+public void setDoctors(List<Doctor> doctors) {
+	this.doctors = doctors;
+}
+
+
+
+public MedicalRep() { }
 
  
 
@@ -76,11 +106,11 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public int getMobileNumber() {
+public String getMobileNumber() {
 	return mobileNumber;
 }
 
-public void setMobileNumber(int mobileNumber) {
+public void setMobileNumber(String mobileNumber) {
 	this.mobileNumber = mobileNumber;
 }
 

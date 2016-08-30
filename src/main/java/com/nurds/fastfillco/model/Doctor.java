@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -51,13 +51,25 @@ public class Doctor extends ResponseObject implements Serializable {
   @OneToMany
   private List<DoctorMedicine> medicines;
   
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "doctors")
+  private List<MedicalRep> medicalReps;
+  
   // ------------------------
   // PUBLIC METHODS
   // ------------------------
   	
   
+  
   public List<DoctorMedicine> getMedicines() {
 	return medicines;
+}
+
+public List<MedicalRep> getMedicalReps() {
+	return medicalReps;
+}
+
+public void setMedicalReps(List<MedicalRep> medicalReps) {
+	this.medicalReps = medicalReps;
 }
 
 public void setMedicines(List<DoctorMedicine> medicines) {

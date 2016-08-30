@@ -1,6 +1,5 @@
 package com.nurds.fastfillco.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import com.nurds.fastfillco.ResponseString;
 import com.nurds.fastfillco.model.Doctor;
 import com.nurds.fastfillco.model.DoctorMedicine;
 import com.nurds.fastfillco.model.DoctorMedicineDao;
+import com.nurds.fastfillco.model.MedicalRep;
 import com.nurds.fastfillco.model.UserDao;
 
 @Controller
@@ -76,6 +76,49 @@ public class UserController {
 		}
 		res.setResponseCode("200");
 		res.setObject(doc);
+		return res;
+	}
+	
+	@RequestMapping(value="/registermr" , method = RequestMethod.POST)
+	@ResponseBody Response registerMR(@RequestBody MedicalRep mrRep) {
+		Response res = new Response();
+		try {
+			userDao.createMr(mrRep);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Register Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseString str = new ResponseString();
+		str.setResponse("User succesfully created!");
+		res.setObject(str);
+		return res;
+	}
+
+	/**
+	 * Delete the user with the passed id.
+	 */
+	@RequestMapping(value="/loginmr")
+	@ResponseBody
+	public Response loginMr(String username, String password) {
+		System.out.println(username+password);
+		Response res = new Response();
+		MedicalRep mr = null;
+		try {
+
+			mr = userDao.loginMr(username, password);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		res.setObject(mr);
 		return res;
 	}
 	
