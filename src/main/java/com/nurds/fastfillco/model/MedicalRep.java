@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -53,12 +54,27 @@ public class MedicalRep extends ResponseObject implements Serializable{
   
   private String companyName;
   
+  @ManyToOne
+  private List<DoctorMedicine> docMedicine;
+  
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Doctor> doctors;
   
   
   
-  public List<Doctor> getDoctors() {
+  public List<DoctorMedicine> getDocMedicine() {
+	return docMedicine;
+}
+
+
+
+public void setDocMedicine(List<DoctorMedicine> docMedicine) {
+	this.docMedicine = docMedicine;
+}
+
+
+
+public List<Doctor> getDoctors() {
 	return doctors;
 }
 

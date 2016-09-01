@@ -8,10 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nurds.fastfillco.ResponseObject;
 
 /**
@@ -41,6 +41,8 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
   
   private String medicineInsurance;
   
+  private String dosage;
+  
   private String numPillPerBox;
   
   private String numOfBoxes;
@@ -55,11 +57,34 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
   
   private String voucherExpiryDate;
   
+  private String voucherLength;
+  
+  private String voucherPrice;
+  
+  @OneToMany(fetch = FetchType.LAZY)
+  private MedicalRep mr;
+  
   private String couponsExpiryDate;
   
   private String numCoupons;
   
-  @JsonIgnore
+  private String couponLength;
+  
+  private String couponPrice;
+  
+  private String couponInsurance;
+  
+  
+  
+  public String getCouponInsurance() {
+	return couponInsurance;
+}
+
+public void setCouponInsurance(String couponInsurance) {
+	this.couponInsurance = couponInsurance;
+}
+
+@JsonIgnore
   @ManyToOne(fetch=FetchType.LAZY)
   private Doctor doctor;
 
@@ -69,6 +94,66 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
 
 public String getMedicineInsurance() {
 	return medicineInsurance;
+}
+
+
+
+
+
+public String getDosage() {
+	return dosage;
+}
+
+public void setDosage(String dosage) {
+	this.dosage = dosage;
+}
+
+public String getVoucherLength() {
+	return voucherLength;
+}
+
+public void setVoucherLength(String voucherLength) {
+	this.voucherLength = voucherLength;
+}
+
+public String getVoucherPrice() {
+	return voucherPrice;
+}
+
+public void setVoucherPrice(String voucherPrice) {
+	this.voucherPrice = voucherPrice;
+}
+
+public MedicalRep getMr() {
+	return mr;
+}
+
+public void setMr(MedicalRep mr) {
+	this.mr = mr;
+}
+
+public String getCouponLength() {
+	return couponLength;
+}
+
+public void setCouponLength(String couponLength) {
+	this.couponLength = couponLength;
+}
+
+public String getCouponPrice() {
+	return couponPrice;
+}
+
+public void setCouponPrice(String couponPrice) {
+	this.couponPrice = couponPrice;
+}
+
+public String getStrengthDoses() {
+	return dosage;
+}
+
+public void setStrengthDoses(String strengthDoses) {
+	this.dosage = strengthDoses;
 }
 
 public void setMedicineInsurance(String medicineInsurance) {
