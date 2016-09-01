@@ -61,7 +61,7 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
   
   private String voucherPrice;
   
-  @OneToMany(fetch = FetchType.LAZY)
+  @ManyToOne (fetch = FetchType.LAZY)
   private MedicalRep mr;
   
   private String couponsExpiryDate;
