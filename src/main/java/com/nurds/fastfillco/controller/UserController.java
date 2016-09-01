@@ -216,6 +216,7 @@ public class UserController {
 		DoctorMedicine medicine = new DoctorMedicine();
 		medicine.setCouponsExpiryDate(medicineReq.getCouponsExpiryDate());
 		medicine.setDoctor(doc);
+		medicine.setNumCoupons(medicineReq.getNumCoupons());
 		medicine.setExpiryDate(medicineReq.getExpiryDate());
 		medicine.setLocationSample(medicineReq.getLocationSample());
 		medicine.setLotNumber(medicineReq.getLotNumber());

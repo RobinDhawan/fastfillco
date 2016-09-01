@@ -22,6 +22,8 @@ public class DoctorMedicineRequest {
 	  
 	  private String numVoucher;
 	  
+	  private String numCoupons;
+	  
 	  private String voucherInsurance;
 	  
 	  private String voucherExpiryDate;
@@ -80,6 +82,16 @@ public class DoctorMedicineRequest {
 
 	public String getLotNumber() {
 		return lotNumber;
+	}
+	
+	
+
+	public String getNumCoupons() {
+		return numCoupons;
+	}
+
+	public void setNumCoupons(String numCoupons) {
+		this.numCoupons = numCoupons;
 	}
 
 	public void setLotNumber(String lotNumber) {
