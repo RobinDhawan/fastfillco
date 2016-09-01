@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nurds.fastfillco.DoctorListResponse;
 import com.nurds.fastfillco.DoctorMedcineResponse;
 import com.nurds.fastfillco.DoctorMedicineRequest;
 import com.nurds.fastfillco.Response;
@@ -76,6 +77,28 @@ public class UserController {
 		}
 		res.setResponseCode("200");
 		res.setObject(doc);
+		return res;
+	}
+	
+	@RequestMapping(value="/getDoctorList")
+	@ResponseBody
+	public Response getDoctor(String username) {
+		Response res = new Response();
+		List<Doctor> doc = null;
+		try {
+
+			doc = userDao.getAll();
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		DoctorListResponse list = new DoctorListResponse();
+		list.setDoctors(doc);
+		res.setObject(list);
 		return res;
 	}
 	
