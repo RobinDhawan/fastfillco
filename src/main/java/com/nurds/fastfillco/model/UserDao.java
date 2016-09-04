@@ -82,6 +82,12 @@ public class UserDao {
 	        .getSingleResult();
 	  }
 
+  public MedicalRep getMr(String username) {
+	    return (MedicalRep) entityManager.createQuery(
+	        "from MedicalRep where username = :username ")
+	        .setParameter("username", username)
+	        .getSingleResult();
+	  }
 	  
 
   // ------------------------

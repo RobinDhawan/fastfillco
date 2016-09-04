@@ -8,75 +8,57 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nurds.fastfillco.ResponseObject;
 
-/**
- * Represents an User for this web application.
- */
 @Entity
-@Table(name = "medicine")
-public class DoctorMedicine extends ResponseObject implements Serializable {
-
-  /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Table(name = "mrmedicine")
+public class MrMedicine extends ResponseObject implements Serializable {
 
 	@Id
 	  @GeneratedValue(strategy = GenerationType.AUTO)
 	  private long id;
 
-  private String medicineName;
-  
-   
-  private String expiryDate;
-  
-  private String mClass;
-  
-  private String subClass;
-  
-  private String medicineInsurance;
-  
-  private String dosage;
-  
-  private String numPillPerBox;
-  
-  private String numOfBoxes;
-  
-  private String lotNumber;
-  
-  private String locationSample;
-  
-  private String numVoucher;
-  
-  private String voucherInsurance;
-  
-  private String voucherExpiryDate;
-  
-  private String medicineLength;
-  
-  private String medicinePrice;
-  
-  @ManyToOne (fetch = FetchType.LAZY)
-  private MedicalRep mr;
-  
-  private String couponsExpiryDate;
-  
-  private String numCoupons;
-  
-  private String couponLength;
-  
-  private String couponPrice;
-  
-  private String couponInsurance;
-  
-  
-  
-  public String getCouponInsurance() {
+private String medicineName;
+
+ 
+private String expiryDate;
+
+private String mClass;
+
+private String subClass;
+
+private String dosage;
+
+private String numPillPerBox;
+
+
+
+
+
+private String voucherInsurance;
+
+private String voucherExpiryDate;
+
+private String medicineLength;
+
+private String medicinePrice;
+
+@ManyToOne (fetch = FetchType.LAZY)
+private MedicalRep mr;
+
+private String couponsExpiryDate;
+
+
+
+
+private String couponInsurance;
+
+
+
+public String getCouponInsurance() {
 	return couponInsurance;
 }
 
@@ -85,16 +67,13 @@ public void setCouponInsurance(String couponInsurance) {
 }
 
 @JsonIgnore
-  @ManyToOne(fetch=FetchType.LAZY)
-  private Doctor doctor;
+@ManyToOne(fetch=FetchType.LAZY)
+private Doctor doctor;
 
-  public String getMedicineName() {
+public String getMedicineName() {
 	return medicineName;
-  }
-
-public String getMedicineInsurance() {
-	return medicineInsurance;
 }
+
 
 
 
@@ -132,21 +111,6 @@ public void setMr(MedicalRep mr) {
 	this.mr = mr;
 }
 
-public String getCouponLength() {
-	return couponLength;
-}
-
-public void setCouponLength(String couponLength) {
-	this.couponLength = couponLength;
-}
-
-public String getCouponPrice() {
-	return couponPrice;
-}
-
-public void setCouponPrice(String couponPrice) {
-	this.couponPrice = couponPrice;
-}
 
 public String getStrengthDoses() {
 	return dosage;
@@ -156,17 +120,6 @@ public void setStrengthDoses(String strengthDoses) {
 	this.dosage = strengthDoses;
 }
 
-public void setMedicineInsurance(String medicineInsurance) {
-	this.medicineInsurance = medicineInsurance;
-}
-
-public String getNumCoupons() {
-	return numCoupons;
-}
-
-public void setNumCoupons(String numCoupons) {
-	this.numCoupons = numCoupons;
-}
 
 public void setMedicineName(String medicineName) {
 	this.medicineName = medicineName;
@@ -204,37 +157,7 @@ public void setNumPillPerBox(String numPillPerBox) {
 	this.numPillPerBox = numPillPerBox;
 }
 
-public String getNumOfBoxes() {
-	return numOfBoxes;
-}
 
-public void setNumOfBoxes(String numOfBoxes) {
-	this.numOfBoxes = numOfBoxes;
-}
-
-public String getLotNumber() {
-	return lotNumber;
-}
-
-public void setLotNumber(String lotNumber) {
-	this.lotNumber = lotNumber;
-}
-
-public String getLocationSample() {
-	return locationSample;
-}
-
-public void setLocationSample(String locationSample) {
-	this.locationSample = locationSample;
-}
-
-public String getNumVoucher() {
-	return numVoucher;
-}
-
-public void setNumVoucher(String numVoucher) {
-	this.numVoucher = numVoucher;
-}
 
 public String getVoucherInsurance() {
 	return voucherInsurance;
@@ -281,20 +204,17 @@ public String toString() {
 	return "DoctorMedicine [id=" + id + ", medicineName=" + medicineName
 			+ ", expiryDate=" + expiryDate + ", mClass=" + mClass
 			+ ", subClass=" + subClass + ", numPillPerBox=" + numPillPerBox
-			+ ", numOfBoxes=" + numOfBoxes + ", lotNumber=" + lotNumber
-			+ ", locationSample=" + locationSample + ", numVoucher="
-			+ numVoucher + ", voucherInsurance=" + voucherInsurance
+			+ ", numOfBoxes=" + "" + ", lotNumber=" + ""
 			+ ", voucherExpiryDate=" + voucherExpiryDate
 			+ ", couponsExpiryDate=" + couponsExpiryDate + ", doctor=" + doctor
 			+ "]";
 }
 
 
-  
-  // ------------------------
-  // PUBLIC METHODS
-  // ------------------------
 
-  
-  
-} // class User
+// ------------------------
+// PUBLIC METHODS
+// ------------------------
+
+
+}

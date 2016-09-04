@@ -34,6 +34,11 @@ public class DoctorMedicineDao {
     return;
   }
   
+  public void createMrMedicine(MrMedicine medicine) {
+	   entityManager.persist(medicine);
+	    return;
+	  }
+	  
   /**
    * Delete the user from the database.
    */

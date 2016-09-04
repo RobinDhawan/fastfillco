@@ -18,6 +18,7 @@ import com.nurds.fastfillco.model.Doctor;
 import com.nurds.fastfillco.model.DoctorMedicine;
 import com.nurds.fastfillco.model.DoctorMedicineDao;
 import com.nurds.fastfillco.model.MedicalRep;
+import com.nurds.fastfillco.model.MrMedicine;
 import com.nurds.fastfillco.model.UserDao;
 
 @Controller
@@ -244,6 +245,39 @@ public class UserController {
 		str.setResponse("Medicine created successfully");
 		return res;
 	}
+	@RequestMapping(value="/mrMedicine/create")
+	@ResponseBody
+	public Response createMrMedicine(@RequestBody DoctorMedicineRequest medicineReq) {
+		System.out.println(medicineReq);
+		MedicalRep doc = userDao.getMr(medicineReq.getUserName());
+		MrMedicine medicine = new MrMedicine();
+		medicine.setCouponsExpiryDate(medicineReq.getCouponsExpiryDate());
+		medicine.setMr(doc);
+		medicine.setExpiryDate(medicineReq.getExpiryDate());
+		medicine.setmClass(medicineReq.getmClass());
+		medicine.setMedicineName(medicineReq.getMedicineName());
+		medicine.setNumPillPerBox(medicineReq.getNumPillPerBox());
+		medicine.setSubClass(medicineReq.getSubClass());
+		medicine.setVoucherExpiryDate(medicineReq.getVoucherExpiryDate());
+		medicine.setVoucherInsurance(medicineReq.getVoucherInsurance());
+		createDocMedicine(medicineReq);
+		Response res = new Response();
+		try {
+			
+			docMedicineDao.createMrMedicine(medicine);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Medicine Creation Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseString str = new ResponseString();
+		str.setResponse("Medicine created successfully");
+		return res;
+	}
+
 
 
 } 
