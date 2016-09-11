@@ -66,7 +66,6 @@ public void setCouponInsurance(String couponInsurance) {
 	this.couponInsurance = couponInsurance;
 }
 
-@JsonIgnore
 @ManyToOne(fetch=FetchType.LAZY)
 private Doctor doctor;
 

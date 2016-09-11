@@ -257,6 +257,43 @@ public class UserController {
 		res.setObject(resp);
 		return res;
 	}
+	
+	@RequestMapping(value="/addMrMedicineDetails")
+	@ResponseBody
+	public Response addDoctorMedicineDetails(int id,String boxNum,String voucherNum,String couponNum) {
+		Response res = new Response();
+		MrMedicine mrMedicine = null;
+		DoctorMedicine doc = null;
+		try {
+			
+			mrMedicine = docMedicineDao.getMrMedicineDetail(id);
+			doc = new DoctorMedicine();
+			doc.setMedicineName(mrMedicine.getMedicineName());
+			doc.setDosage(mrMedicine.getDosage());
+			doc.setCouponInsurance(mrMedicine.getCouponInsurance());
+			doc.setNumOfBoxes(boxNum);
+			doc.setNumVoucher(voucherNum);
+			doc.setNumCoupons(couponNum);
+			doc.setExpiryDate(mrMedicine.getExpiryDate());
+			doc.setVoucherInsurance(mrMedicine.getVoucherInsurance());
+			doc.setSubClass(mrMedicine.getSubClass());
+			doc.setmClass(mrMedicine.getmClass());
+			doc.setNumPillPerBox(mrMedicine.getNumPillPerBox());
+			doc.setMr(mrMedicine.getMr());
+			docMedicineDao.create(doc);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		ResponseString str = new ResponseString();
+		str.setResponse("User succesfully created!");
+		res.setObject(str);
+		res.setResponseCode("200");
+		return res;
+	}
 
 	@RequestMapping(value="/getdoctorMedicineDetail")
 	@ResponseBody

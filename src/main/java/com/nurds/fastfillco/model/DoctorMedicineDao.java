@@ -83,6 +83,15 @@ public class DoctorMedicineDao {
 	        .getResultList();
 	  }
   
+  public MrMedicine getMrMedicineDetail(long id) {
+	    return (MrMedicine) entityManager.createQuery(
+	        "from MrMedicine where id = :id")
+	        .setParameter("id", id)
+	        .getSingleResult();
+	  }
+  
+  
+  
   public List<MrMedicine> getallMrMedicineDetails() {
 	    return entityManager.createQuery(
 	        "from MrMedicine")
