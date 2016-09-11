@@ -83,6 +83,12 @@ public class DoctorMedicineDao {
 	        .getResultList();
 	  }
   
+  public List<MrMedicine> getallMrMedicineDetails() {
+	    return entityManager.createQuery(
+	        "from MrMedicine")
+	        .getResultList();
+	  }
+  
   public void updateMedicineDetails(DoctorMedicine medicine) {
 	  	DoctorMedicine med = getMedicineDetail(medicine.getId());
 	  	if(medicine.getNumOfBoxes()!=null)
