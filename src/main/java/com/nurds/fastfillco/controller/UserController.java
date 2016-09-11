@@ -127,6 +127,49 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/getDocs")
+	@ResponseBody
+	public Response getDocs(String username) {
+		Response res = new Response();
+		List<String> mClasses = null;
+		try {
+
+			mClasses = userDao.getAllDoc();
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseListStr list = new ResponseListStr();
+		list.setResponse(mClasses);
+		res.setObject(list);
+		return res;
+	}
+	@RequestMapping(value="/getMrs")
+	@ResponseBody
+	public Response getMrs(String username) {
+		Response res = new Response();
+		List<String> mClasses = null;
+		try {
+
+			mClasses = userDao.getAllMr();
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseListStr list = new ResponseListStr();
+		list.setResponse(mClasses);
+		res.setObject(list);
+		return res;
+	}
+	
 	@RequestMapping(value="/getNames")
 	@ResponseBody
 	public Response getNames(String username) {
@@ -175,6 +218,7 @@ public class UserController {
 	@ResponseBody Response registerMR(@RequestBody MedicalRep mrRep) {
 		Response res = new Response();
 		try {
+			
 			userDao.createMr(mrRep);
 		}
 		catch (Exception ex) {

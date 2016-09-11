@@ -53,8 +53,18 @@ public class UserDao {
    * Return all the users stored in the database.
    */
   @SuppressWarnings("unchecked")
+  public List<String> getAllDoc() {
+    return entityManager.createQuery("select username from Doctor").getResultList();
+  }
+  
+  @SuppressWarnings("unchecked")
   public List<Doctor> getAll() {
     return entityManager.createQuery("from Doctor").getResultList();
+  }
+  
+  @SuppressWarnings("unchecked")
+  public List<String> getAllMr() {
+    return entityManager.createQuery("select username from MedicalRep").getResultList();
   }
   
   /**
