@@ -127,6 +127,28 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/getNames")
+	@ResponseBody
+	public Response getNames(String username) {
+		Response res = new Response();
+		List<String> mClasses = null;
+		try {
+
+			mClasses = docMedicineDao.getAllNames();
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseListStr list = new ResponseListStr();
+		list.setResponse(mClasses);
+		res.setObject(list);
+		return res;
+	}
+	
 	@RequestMapping(value="/getSubClasses")
 	@ResponseBody
 	public Response getSubClasses(String username) {

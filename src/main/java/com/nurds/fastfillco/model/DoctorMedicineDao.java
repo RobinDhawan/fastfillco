@@ -62,6 +62,10 @@ public class DoctorMedicineDao {
 	   return entityManager.createQuery("select DISTINCT mClass from DoctorMedicine").getResultList();
 	  }
   
+  public List<String> getAllNames() {
+	   return entityManager.createQuery("select DISTINCT medicineName from mrMedicine").getResultList();
+	  }
+  
   public List<String> getAllSubClasses() {
 	   return entityManager.createQuery("select DISTINCT subClass from DoctorMedicine").getResultList();
 	  }
