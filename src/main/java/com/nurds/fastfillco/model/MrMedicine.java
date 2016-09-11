@@ -46,6 +46,7 @@ private String medicineLength;
 
 private String medicinePrice;
 
+@JsonIgnore
 @ManyToOne (fetch = FetchType.LAZY)
 private MedicalRep mr;
 
@@ -66,6 +67,7 @@ public void setCouponInsurance(String couponInsurance) {
 	this.couponInsurance = couponInsurance;
 }
 
+@JsonIgnore
 @ManyToOne(fetch=FetchType.LAZY)
 private Doctor doctor;
 
