@@ -13,6 +13,7 @@ import com.nurds.fastfillco.DoctorListResponse;
 import com.nurds.fastfillco.DoctorMedcineResponse;
 import com.nurds.fastfillco.DoctorMedicineRequest;
 import com.nurds.fastfillco.Response;
+import com.nurds.fastfillco.ResponseListStr;
 import com.nurds.fastfillco.ResponseString;
 import com.nurds.fastfillco.model.Doctor;
 import com.nurds.fastfillco.model.DoctorMedicine;
@@ -99,6 +100,50 @@ public class UserController {
 		res.setResponseCode("200");
 		DoctorListResponse list = new DoctorListResponse();
 		list.setDoctors(doc);
+		res.setObject(list);
+		return res;
+	}
+	
+	@RequestMapping(value="/getClasses")
+	@ResponseBody
+	public Response getClasses(String username) {
+		Response res = new Response();
+		List<String> mClasses = null;
+		try {
+
+			mClasses = docMedicineDao.getAllClasses();
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseListStr list = new ResponseListStr();
+		list.setResponse(mClasses);
+		res.setObject(list);
+		return res;
+	}
+	
+	@RequestMapping(value="/getSubClasses")
+	@ResponseBody
+	public Response getSubClasses(String username) {
+		Response res = new Response();
+		List<String> mClasses = null;
+		try {
+
+			mClasses = docMedicineDao.getAllSubClasses();
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseListStr list = new ResponseListStr();
+		list.setResponse(mClasses);
 		res.setObject(list);
 		return res;
 	}

@@ -58,6 +58,14 @@ public class DoctorMedicineDao {
     return entityManager.createQuery("from Doctor").getResultList();
   }
   
+  public List<String> getAllClasses() {
+	   return entityManager.createQuery("select DISTINCT mClass from DoctorMedicine").getResultList();
+	  }
+  
+  public List<String> getAllSubClasses() {
+	   return entityManager.createQuery("select DISTINCT subClass from DoctorMedicine").getResultList();
+	  }
+  
   /**
    * Return the user having the passed email.
    */
