@@ -78,7 +78,7 @@ public class DoctorMedicineDao {
   
   public List<MrMedicine> getMrMedicineDetails(String userName) {
 	    return entityManager.createQuery(
-	        "from MrMedicine where doctor.username = :username")
+	        "from MrMedicine where mr.username = :username")
 	        .setParameter("username", userName)
 	        .getResultList();
 	  }
