@@ -76,6 +76,13 @@ public class DoctorMedicineDao {
         .getResultList();
   }
   
+  public List<MrMedicine> getMrMedicineDetails(String userName) {
+	    return entityManager.createQuery(
+	        "from MrMedicine where doctor.username = :username")
+	        .setParameter("username", userName)
+	        .getResultList();
+	  }
+  
   public void updateMedicineDetails(DoctorMedicine medicine) {
 	  	DoctorMedicine med = getMedicineDetail(medicine.getId());
 	  	if(medicine.getNumOfBoxes()!=null)

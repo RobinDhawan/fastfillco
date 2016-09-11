@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nurds.fastfillco.DoctorListResponse;
 import com.nurds.fastfillco.DoctorMedcineResponse;
 import com.nurds.fastfillco.DoctorMedicineRequest;
+import com.nurds.fastfillco.MrMedcineResponse;
 import com.nurds.fastfillco.Response;
 import com.nurds.fastfillco.ResponseListStr;
 import com.nurds.fastfillco.ResponseString;
@@ -212,6 +213,28 @@ public class UserController {
 		res.setObject(resp);
 		return res;
 	}
+	
+	@RequestMapping(value="/getMrMedicineDetails")
+	@ResponseBody
+	public Response getMrMedicineDetails(String userName) {
+		Response res = new Response();
+		List<MrMedicine> docList = null;
+		try {
+
+			docList = docMedicineDao.getMrMedicineDetails(userName);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		MrMedcineResponse resp = new MrMedcineResponse();
+		resp.setMedicines(docList);
+		res.setResponseCode("200");
+		res.setObject(resp);
+		return res;
+	}
 
 	@RequestMapping(value="/getdoctorMedicineDetail")
 	@ResponseBody
@@ -305,7 +328,6 @@ public class UserController {
 		medicine.setSubClass(medicineReq.getSubClass());
 		medicine.setVoucherExpiryDate(medicineReq.getVoucherExpiryDate());
 		medicine.setVoucherInsurance(medicineReq.getVoucherInsurance());
-		createDocMedicine(medicineReq);
 		Response res = new Response();
 		try {
 			
