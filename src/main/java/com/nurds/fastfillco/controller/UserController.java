@@ -326,10 +326,11 @@ public class UserController {
 	
 	@RequestMapping(value="/addMrMedicineDetails")
 	@ResponseBody
-	public Response addDoctorMedicineDetails(int id,String boxNum,String voucherNum,String couponNum) {
+	public Response addDoctorMedicineDetails(int id,String boxNum,String voucherNum,String couponNum,String doctor) {
 		Response res = new Response();
 		MrMedicine mrMedicine = null;
 		DoctorMedicine doc = null;
+		Doctor docObj = userDao.getDoctor(doctor);
 		try {
 			
 			mrMedicine = docMedicineDao.getMrMedicineDetail(id);
@@ -346,6 +347,7 @@ public class UserController {
 			doc.setmClass(mrMedicine.getmClass());
 			doc.setNumPillPerBox(mrMedicine.getNumPillPerBox());
 			doc.setMr(mrMedicine.getMr());
+			doc.setDoctor(docObj);
 			docMedicineDao.create(doc);
 		}
 		catch (Exception ex) {
