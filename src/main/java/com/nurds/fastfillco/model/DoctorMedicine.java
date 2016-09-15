@@ -61,6 +61,7 @@ public class DoctorMedicine extends ResponseObject implements Serializable {
   
   private String medicinePrice;
   
+  @JsonIgnore
   @ManyToOne (fetch = FetchType.LAZY)
   private MedicalRep mr;
   
