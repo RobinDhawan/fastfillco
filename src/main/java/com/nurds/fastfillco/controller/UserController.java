@@ -129,7 +129,7 @@ public class UserController {
 	
 	@RequestMapping(value="/getDocs")
 	@ResponseBody
-	public Response getDocs(String username) {
+	public Response getDocs() {
 		Response res = new Response();
 		List<String> mClasses = null;
 		try {
@@ -150,7 +150,7 @@ public class UserController {
 	}
 	@RequestMapping(value="/getMrs")
 	@ResponseBody
-	public Response getMrs(String username) {
+	public Response getMrs() {
 		Response res = new Response();
 		List<String> mClasses = null;
 		try {
