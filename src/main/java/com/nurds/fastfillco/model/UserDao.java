@@ -38,6 +38,10 @@ public class UserDao {
 	   entityManager.persist(mr);
 	    return;
 	  }
+  public void createLocation(Location mr) {
+	   entityManager.persist(mr);
+	    return;
+	  }
   /**
    * Delete the user from the database.
    */
@@ -91,6 +95,14 @@ public class UserDao {
 	        .setParameter("username", username)
 	        .getSingleResult();
 	  }
+  
+  public Location getLocation(long id) {
+	    return (Location) entityManager.createQuery(
+	        "from Location where id = :id ")
+	        .setParameter("id", id)
+	        .getSingleResult();
+	  }
+  
 
   public MedicalRep getMr(String username) {
 	    return (MedicalRep) entityManager.createQuery(

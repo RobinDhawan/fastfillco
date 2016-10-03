@@ -4,6 +4,7 @@ import javax.persistence.Id;
 
 public class DoctorMedicineRequest {
 
+	private long location;
 	private String medicineName;
 	  
 	  private String expiryDate;
@@ -31,6 +32,8 @@ public class DoctorMedicineRequest {
 	  private String couponsExpiryDate;
 	  
 	  private String userName;
+	  
+	  private String locationName;
 
 	public String getMedicineName() {
 		return medicineName;
@@ -58,6 +61,16 @@ public class DoctorMedicineRequest {
 
 	public String getSubClass() {
 		return subClass;
+	}
+	
+	
+
+	public String getLocationName() {
+		return locationName;
+	}
+
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
 	}
 
 	public void setSubClass(String subClass) {
@@ -100,6 +113,14 @@ public class DoctorMedicineRequest {
 
 	public String getLocationSample() {
 		return locationSample;
+	}
+
+	public long getLocation() {
+		return location;
+	}
+
+	public void setLocation(long location) {
+		this.location = location;
 	}
 
 	public void setLocationSample(String locationSample) {

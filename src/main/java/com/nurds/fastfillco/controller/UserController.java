@@ -1,5 +1,6 @@
 package com.nurds.fastfillco.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nurds.fastfillco.DoctorListResponse;
 import com.nurds.fastfillco.DoctorMedcineResponse;
 import com.nurds.fastfillco.DoctorMedicineRequest;
+import com.nurds.fastfillco.LocationRequest;
 import com.nurds.fastfillco.MrMedcineResponse;
 import com.nurds.fastfillco.Response;
 import com.nurds.fastfillco.ResponseListStr;
@@ -19,6 +21,7 @@ import com.nurds.fastfillco.ResponseString;
 import com.nurds.fastfillco.model.Doctor;
 import com.nurds.fastfillco.model.DoctorMedicine;
 import com.nurds.fastfillco.model.DoctorMedicineDao;
+import com.nurds.fastfillco.model.Location;
 import com.nurds.fastfillco.model.MedicalRep;
 import com.nurds.fastfillco.model.MrMedicine;
 import com.nurds.fastfillco.model.UserDao;
@@ -44,6 +47,11 @@ public class UserController {
 	public Response registerDoctor(@RequestBody Doctor doctor) {
 		Response res = new Response();
 		try {
+			Location loc = new Location();
+			loc.setLabel("default");
+			List locs = new ArrayList<>();
+			locs.add(loc);
+			doctor.setLocations(locs);
 			userDao.create(doctor);
 		}
 		catch (Exception ex) {
@@ -258,14 +266,32 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/addLocation")
+	@ResponseBody
+	public Response addLocation(LocationRequest location) {
+		Doctor doc = userDao.getDoctor(location.getUserName());
+		Location loc = new Location();
+		loc.setAddressline1(location.getAddressline1());
+		loc.setAddressline2(location.getAddressline2());
+		loc.setDoctor(doc);
+		loc.setCity(location.getCity());
+		loc.setState(location.getState());
+		loc.setPinCode(location.getPinCode());
+		Response res = new Response();		
+		userDao.createLocation(loc);
+		res.setResponseCode("200");
+		return res;
+	}
+	
+
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
-	public Response getMedicineDetails(String userName) {
+	public Response getMedicineDetails(String userName,long location) {
 		Response res = new Response();
 		List<DoctorMedicine> docList = null;
 		try {
 
-			docList = docMedicineDao.getMedicineDetails(userName);
+			docList = docMedicineDao.getMedicineDetails(userName,location);
 		}
 		catch (Exception ex) {
 			System.out.println(ex);
@@ -408,6 +434,7 @@ public class UserController {
 	@ResponseBody
 	public Response createDocMedicine(@RequestBody DoctorMedicineRequest medicineReq) {
 		System.out.println(medicineReq);
+		Location loc = userDao.getLocation(medicineReq.getLocation());
 		Doctor doc = userDao.getDoctor(medicineReq.getUserName());
 		DoctorMedicine medicine = new DoctorMedicine();
 		medicine.setCouponsExpiryDate(medicineReq.getCouponsExpiryDate());
@@ -424,6 +451,7 @@ public class UserController {
 		medicine.setSubClass(medicineReq.getSubClass());
 		medicine.setVoucherExpiryDate(medicineReq.getVoucherExpiryDate());
 		medicine.setVoucherInsurance(medicineReq.getVoucherInsurance());
+		medicine.setLocation(loc);
 		Response res = new Response();
 		try {
 			

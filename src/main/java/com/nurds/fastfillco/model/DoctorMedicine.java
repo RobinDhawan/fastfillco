@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -89,7 +88,37 @@ public void setCouponInsurance(String couponInsurance) {
   @ManyToOne(fetch=FetchType.LAZY)
   private Doctor doctor;
 
-  public String getMedicineName() {
+@JsonIgnore
+@ManyToOne(fetch=FetchType.LAZY)
+private Location location;
+
+
+
+  public String getMedicineLength() {
+	return medicineLength;
+}
+
+public void setMedicineLength(String medicineLength) {
+	this.medicineLength = medicineLength;
+}
+
+public String getMedicinePrice() {
+	return medicinePrice;
+}
+
+public void setMedicinePrice(String medicinePrice) {
+	this.medicinePrice = medicinePrice;
+}
+
+public Location getLocation() {
+	return location;
+}
+
+public void setLocation(Location location) {
+	this.location = location;
+}
+
+public String getMedicineName() {
 	return medicineName;
   }
 

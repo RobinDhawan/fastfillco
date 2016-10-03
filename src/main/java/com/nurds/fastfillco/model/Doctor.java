@@ -51,8 +51,13 @@ public class Doctor extends ResponseObject implements Serializable {
   @OneToMany
   private List<DoctorMedicine> medicines;
   
+  @OneToMany
+  private List<Location> locations;
+  
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "doctors")
   private List<MedicalRep> medicalReps;
+  
+  
   
   // ------------------------
   // PUBLIC METHODS
@@ -60,7 +65,15 @@ public class Doctor extends ResponseObject implements Serializable {
   	
   
   
-  public List<DoctorMedicine> getMedicines() {
+  public List<Location> getLocations() {
+	return locations;
+}
+
+public void setLocations(List<Location> locations) {
+	this.locations = locations;
+}
+
+public List<DoctorMedicine> getMedicines() {
 	return medicines;
 }
 
