@@ -50,6 +50,8 @@ public class UserController {
 			Location loc = new Location();
 			loc.setLabel("default");
 			List locs = new ArrayList<>();
+			
+			userDao.createLocation(loc);
 			locs.add(loc);
 			doctor.setLocations(locs);
 			userDao.create(doctor);
