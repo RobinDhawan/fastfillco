@@ -271,6 +271,7 @@ public class UserController {
 	@RequestMapping(value="/addLocation")
 	@ResponseBody
 	public Response addLocation(LocationRequest location) {
+		System.out.println(location);
 		Doctor doc = userDao.getDoctor(location.getUserName());
 		Location loc = new Location();
 		loc.setAddressline1(location.getAddressline1());

@@ -15,6 +15,16 @@ private String label;
 	private String addressline2;
 	
 	private String userName;
+	
+	
+
+	@Override
+	public String toString() {
+		return "LocationRequest [label=" + label + ", city=" + city
+				+ ", state=" + state + ", pinCode=" + pinCode
+				+ ", addressline1=" + addressline1 + ", addressline2="
+				+ addressline2 + ", userName=" + userName + "]";
+	}
 
 	public String getLabel() {
 		return label;
