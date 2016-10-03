@@ -288,12 +288,12 @@ public class UserController {
 
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
-	public Response getMedicineDetails(String userName,long location) {
+	public Response getMedicineDetails(String userName) {
 		Response res = new Response();
 		List<DoctorMedicine> docList = null;
 		try {
 
-			docList = docMedicineDao.getMedicineDetails(userName,location);
+			docList = docMedicineDao.getMedicineDetails(userName);
 		}
 		catch (Exception ex) {
 			System.out.println(ex);
