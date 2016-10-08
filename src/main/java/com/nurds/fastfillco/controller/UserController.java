@@ -276,12 +276,13 @@ public class UserController {
 		Location loc = new Location();
 		loc.setAddressline1(location.getAddressline1());
 		loc.setAddressline2(location.getAddressline2());
-		loc.setDoctor(doc);
 		loc.setCity(location.getCity());
 		loc.setState(location.getState());
 		loc.setPinCode(location.getPinCode());
 		Response res = new Response();		
 		userDao.createLocation(loc);
+		doc.getLocations().add(loc);
+		userDao.create(doc);
 		res.setResponseCode("200");
 		return res;
 	}
