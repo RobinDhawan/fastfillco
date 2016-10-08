@@ -120,6 +120,15 @@ public class Location extends ResponseObject implements Serializable{
 		this.addressline2 = addressline2;
 	}
 
+	@Override
+	public String toString() {
+		return "Location [id=" + id + ", label=" + label + ", city=" + city
+				+ ", state=" + state + ", pinCode=" + pinCode
+				+ ", addressline1=" + addressline1 + ", addressline2="
+				+ addressline2 + ", doctor=" + doctor + ", medicine="
+				+ medicine + "]";
+	}
+
 	
 	
 

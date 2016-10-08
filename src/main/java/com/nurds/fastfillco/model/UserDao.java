@@ -39,6 +39,7 @@ public class UserDao {
 	    return;
 	  }
   public void createLocation(Location mr) {
+	  System.out.println(mr);
 	   entityManager.persist(mr);
 	    return;
 	  }
