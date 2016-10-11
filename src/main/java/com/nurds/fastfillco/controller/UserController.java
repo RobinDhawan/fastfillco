@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nurds.fastfillco.DoctorListResponse;
 import com.nurds.fastfillco.DoctorMedcineResponse;
 import com.nurds.fastfillco.DoctorMedicineRequest;
+import com.nurds.fastfillco.DoctorResponse;
 import com.nurds.fastfillco.LocationRequest;
 import com.nurds.fastfillco.MrMedcineResponse;
 import com.nurds.fastfillco.Response;
@@ -288,7 +289,28 @@ public class UserController {
 		res.setResponseCode("200");
 		return res;
 	}
-	
+	@RequestMapping(value="/viewDocDetails")
+	@ResponseBody
+	public Response getDoctorDetails(String docName,String location) {
+		Doctor doc = userDao.getLocation(docName,location);
+		DoctorResponse resp = new DoctorResponse();
+		Response response = new Response();
+		resp.setFirstName(doc.getFirstName());
+		resp.setLastName(doc.getLastName());
+		resp.setMobileNumber(doc.getMobileNumber());
+		
+		Location loc = doc.getLocations().get(0);
+		resp.setAddressline1(loc.getAddressline1());
+		resp.setAddressline2(loc.getAddressline2());
+		resp.setCity(loc.getCity());
+		resp.setPinCode(loc.getPinCode());
+		resp.setSpeciality(doc.getSpeciality());
+		resp.setClinicName(doc.getClinicName());
+		resp.setState(loc.getState());
+		response.setObject(resp);
+		response.setResponseCode("200");
+		return response;
+	}
 
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody

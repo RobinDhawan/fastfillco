@@ -33,6 +33,14 @@ public class UserDao {
    entityManager.persist(doctor);
     return;
   }
+  
+  public Doctor getLocation(String label,String userName) {
+	  return (Doctor) entityManager.createQuery(
+		        "from Doctor d join d.locations loc where d.username = :username and loc.label = :label")
+		        .setParameter("username", userName)
+		        .setParameter("password", label)
+		        .getSingleResult();
+  }
  
   public void createMr(MedicalRep mr) {
 	   entityManager.persist(mr);
