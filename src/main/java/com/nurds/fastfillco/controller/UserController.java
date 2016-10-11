@@ -298,15 +298,19 @@ public class UserController {
 		resp.setFirstName(doc.getFirstName());
 		resp.setLastName(doc.getLastName());
 		resp.setMobileNumber(doc.getMobileNumber());
+		resp.setUsername(doc.getUsername());
+		resp.setSpeciality(doc.getSpeciality());
+		resp.setClinicName(doc.getClinicName());
 		
+		if(id!=0) {
 		Location loc = userDao.getLocation(id);
 		resp.setAddressline1(loc.getAddressline1());
 		resp.setAddressline2(loc.getAddressline2());
 		resp.setCity(loc.getCity());
 		resp.setPinCode(loc.getPinCode());
-		resp.setSpeciality(doc.getSpeciality());
-		resp.setClinicName(doc.getClinicName());
+
 		resp.setState(loc.getState());
+		}
 		response.setObject(resp);
 		response.setResponseCode("200");
 		return response;
@@ -314,12 +318,12 @@ public class UserController {
 
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
-	public Response getMedicineDetails(String userName) {
+	public Response getMedicineDetails(String userName,long id) {
 		Response res = new Response();
 		List<DoctorMedicine> docList = null;
 		try {
 
-			docList = docMedicineDao.getMedicineDetails(userName);
+			docList = docMedicineDao.getMedicineDetails(userName,id);
 		}
 		catch (Exception ex) {
 			System.out.println(ex);
@@ -327,6 +331,7 @@ public class UserController {
 			res.setError("Login Failed");
 			return res;
 		}
+		System.out.println(docList);
 		DoctorMedcineResponse resp = new DoctorMedcineResponse();
 		resp.setMedicines(docList);
 		res.setResponseCode("200");
@@ -380,11 +385,13 @@ public class UserController {
 	
 	@RequestMapping(value="/addMrMedicineDetails")
 	@ResponseBody
-	public Response addDoctorMedicineDetails(int id,String boxNum,String voucherNum,String couponNum,String doctor) {
+	public Response addDoctorMedicineDetails(int id,String boxNum,String voucherNum,String couponNum,String doctor,long loc) {
 		Response res = new Response();
+		System.out.println(loc);
 		MrMedicine mrMedicine = null;
 		DoctorMedicine doc = null;
 		Doctor docObj = userDao.getDoctor(doctor);
+		Location location = userDao.getLocation(loc);
 		try {
 			
 			mrMedicine = docMedicineDao.getMrMedicineDetail(id);
@@ -401,6 +408,7 @@ public class UserController {
 			doc.setmClass(mrMedicine.getmClass());
 			doc.setNumPillPerBox(mrMedicine.getNumPillPerBox());
 			doc.setMr(mrMedicine.getMr());
+			doc.setLocation(location);
 			doc.setDoctor(docObj);
 			docMedicineDao.create(doc);
 		}
