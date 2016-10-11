@@ -291,15 +291,15 @@ public class UserController {
 	}
 	@RequestMapping(value="/viewDocDetails")
 	@ResponseBody
-	public Response getDoctorDetails(String docName,String location) {
-		Doctor doc = userDao.getLocation(location,docName);
+	public Response getDoctorDetails(String docName,long id) {
+		Doctor doc = userDao.getDoctor(docName);
 		DoctorResponse resp = new DoctorResponse();
 		Response response = new Response();
 		resp.setFirstName(doc.getFirstName());
 		resp.setLastName(doc.getLastName());
 		resp.setMobileNumber(doc.getMobileNumber());
 		
-		Location loc = doc.getLocations().get(0);
+		Location loc = userDao.getLocation(id);
 		resp.setAddressline1(loc.getAddressline1());
 		resp.setAddressline2(loc.getAddressline2());
 		resp.setCity(loc.getCity());
