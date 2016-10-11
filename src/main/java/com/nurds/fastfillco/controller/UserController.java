@@ -274,6 +274,7 @@ public class UserController {
 		System.out.println(location);
 		Doctor doc = userDao.getDoctor(location.getUserName());
 		Location loc = new Location();
+		loc.setLabel(location.getLabel());
 		loc.setAddressline1(location.getAddressline1());
 		loc.setAddressline2(location.getAddressline2());
 		loc.setCity(location.getCity());
