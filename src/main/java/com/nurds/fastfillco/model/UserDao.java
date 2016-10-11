@@ -38,7 +38,7 @@ public class UserDao {
 	  return (Doctor) entityManager.createQuery(
 		        "from Doctor d join d.locations loc where d.username = :username and loc.label = :label")
 		        .setParameter("username", userName)
-		        .setParameter("password", label)
+		        .setParameter("label", label)
 		        .getSingleResult();
   }
  
