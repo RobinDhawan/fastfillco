@@ -287,7 +287,7 @@ public class UserController {
 		doc.getLocations().add(loc1);
 		userDao.create(doc);
 		res.setResponseCode("200");
-		res.setStr((int)loc.getId());
+		res.setStr(loc.getId());
 		return res;
 	}
 	@RequestMapping(value="/viewDocDetails")

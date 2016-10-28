@@ -8,15 +8,15 @@ public class Response {
 	
 	private ResponseObject resObject;
 	
-	private int str;
+	private long str;
 	
 	
 
-	public int getStr() {
+	public long getStr() {
 		return str;
 	}
 
-	public void setStr(int str) {
+	public void setStr(long str) {
 		this.str = str;
 	}
 
