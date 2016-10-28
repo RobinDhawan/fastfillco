@@ -7,6 +7,18 @@ public class Response {
 	private String error;
 	
 	private ResponseObject resObject;
+	
+	private int str;
+	
+	
+
+	public int getStr() {
+		return str;
+	}
+
+	public void setStr(int str) {
+		this.str = str;
+	}
 
 	public String getResponseCode() {
 		return responseCode;
