@@ -46,6 +46,24 @@ private String medicineLength;
 
 private String medicinePrice;
 
+private int voucherPrice;
+
+private int couponPrice;
+
+
+
+public int getCouponPrice() {
+	return couponPrice;
+}
+
+public void setCouponPrice(int couponPrice) {
+	this.couponPrice = couponPrice;
+}
+
+public void setVoucherPrice(int voucherPrice) {
+	this.voucherPrice = voucherPrice;
+}
+
 @JsonIgnore
 @ManyToOne (fetch = FetchType.LAZY)
 private MedicalRep mr;

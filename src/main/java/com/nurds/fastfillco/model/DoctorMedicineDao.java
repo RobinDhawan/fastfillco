@@ -81,10 +81,19 @@ public class DoctorMedicineDao {
         .getResultList();
   }
   
+  
+  
   public List<MrMedicine> getMrMedicineDetails(String userName) {
 	    return entityManager.createQuery(
 	        "from MrMedicine where mr.username = :username")
 	        .setParameter("username", userName)
+	        .getResultList();
+	  }
+  
+  public List<MrMedicine> getMrMedicineDetail(String name) {
+	    return entityManager.createQuery(
+	        "from MrMedicine where medicineName = :name")
+	        .setParameter("username", name)
 	        .getResultList();
 	  }
   

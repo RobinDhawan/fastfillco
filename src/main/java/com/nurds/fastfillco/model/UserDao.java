@@ -33,6 +33,10 @@ public class UserDao {
    entityManager.persist(doctor);
     return;
   }
+  public void update(Doctor doctor) {
+	   entityManager.merge(doctor);
+	    return;
+	  }
   
   public Doctor getLocation(String label,String userName) {
 	  return (Doctor) entityManager.createQuery(

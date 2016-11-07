@@ -69,6 +69,8 @@ public class UserController {
 		res.setObject(str);
 		return res;
 	}
+	
+	
 
 	/**
 	 * Delete the user with the passed id.
@@ -384,9 +386,56 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/getAllMrMedicineDetails")
+	@ResponseBody
+	public Response updatePassword(String oldPassword,String newPassword,String userName,boolean isDoc) {
+		Response res = new Response();
+		try {
+
+			if(isDoc) {
+			Doctor doc = userDao.login(userName, oldPassword);
+			doc.setPassword(newPassword);
+			userDao.update(doc);
+			}
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		MrMedcineResponse resp = new MrMedcineResponse();
+		resp.setMedicines(docList);
+		res.setResponseCode("200");
+		res.setObject(resp);
+		return res;
+	}
+	
+	@RequestMapping(value="/getMrMedicine")
+	@ResponseBody
+	public Response geMrMedicine(String mrMedicine) {
+		Response res = new Response();
+		List<MrMedicine> docList = null;
+		try {
+
+			docList = docMedicineDao.getMrMedicineDetail(mrMedicine);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		MrMedcineResponse resp = new MrMedcineResponse();
+		resp.setMedicines(docList);
+		res.setResponseCode("200");
+		res.setObject(resp);
+		return res;
+	}
+	
 	@RequestMapping(value="/addMrMedicineDetails")
 	@ResponseBody
-	public Response addDoctorMedicineDetails(int id,String boxNum,String voucherNum,String couponNum,String doctor,long loc) {
+	public Response addDoctorMedicineDetails(int id,String boxNum,String voucherNum,String couponNum,String medloc,String doctor,long loc) {
 		Response res = new Response();
 		System.out.println(loc);
 		MrMedicine mrMedicine = null;
@@ -402,6 +451,7 @@ public class UserController {
 			doc.setCouponInsurance(mrMedicine.getCouponInsurance());
 			doc.setNumOfBoxes(boxNum);
 			doc.setNumVoucher(voucherNum);
+			doc.setLocationSample(medloc);
 			doc.setNumCoupons(couponNum);
 			doc.setExpiryDate(mrMedicine.getExpiryDate());
 			doc.setVoucherInsurance(mrMedicine.getVoucherInsurance());
@@ -420,7 +470,7 @@ public class UserController {
 			return res;
 		}
 		ResponseString str = new ResponseString();
-		str.setResponse("User succesfully created!");
+		str.setResponse("Medicine Assigned Successfully!");
 		res.setObject(str);
 		res.setResponseCode("200");
 		return res;
