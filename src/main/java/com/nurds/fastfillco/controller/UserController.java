@@ -396,6 +396,10 @@ public class UserController {
 			Doctor doc = userDao.login(userName, oldPassword);
 			doc.setPassword(newPassword);
 			userDao.update(doc);
+			} else {
+				MedicalRep doc = userDao.loginMr(userName, oldPassword);
+				doc.setPassword(newPassword);
+				userDao.updateMr(doc);
 			}
 		}
 		catch (Exception ex) {
@@ -405,7 +409,6 @@ public class UserController {
 			return res;
 		}
 		MrMedcineResponse resp = new MrMedcineResponse();
-		resp.setMedicines(docList);
 		res.setResponseCode("200");
 		res.setObject(resp);
 		return res;

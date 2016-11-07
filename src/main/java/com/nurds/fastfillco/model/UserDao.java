@@ -37,6 +37,10 @@ public class UserDao {
 	   entityManager.merge(doctor);
 	    return;
 	  }
+  public void updateMr(MedicalRep doctor) {
+	   entityManager.merge(doctor);
+	    return;
+	  }
   
   public Doctor getLocation(String label,String userName) {
 	  return (Doctor) entityManager.createQuery(
