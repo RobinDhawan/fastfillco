@@ -318,7 +318,8 @@ public class UserController {
 		response.setResponseCode("200");
 		return response;
 	}
-
+	
+		
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
 	public Response getMedicineDetails(String userName,long id) {
@@ -386,7 +387,7 @@ public class UserController {
 		return res;
 	}
 	
-	@RequestMapping(value="/getAllMrMedicineDetails")
+	@RequestMapping(value="/updatePassword")
 	@ResponseBody
 	public Response updatePassword(String oldPassword,String newPassword,String userName,boolean isDoc) {
 		Response res = new Response();
