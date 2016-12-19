@@ -50,6 +50,14 @@ public class DoctorMedicineDao {
     return;
   }
   
+  public void delete(MrMedicine user) {
+	    if (entityManager.contains(user))
+	      entityManager.remove(user);
+	    else
+	      entityManager.remove(entityManager.merge(user));
+	    return;
+	  }
+  
   /**
    * Return all the users stored in the database.
    */

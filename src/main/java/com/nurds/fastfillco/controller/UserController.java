@@ -415,6 +415,28 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/deleteMrMedicine")
+	@ResponseBody
+	public Response deleteMrMedicine(long id) {
+		Response res = new Response();
+		List<MrMedicine> docList = null;
+		try {
+			MrMedicine medicine = docMedicineDao.getMrMedicineDetail(id);
+
+			docMedicineDao.delete(medicine);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		MrMedcineResponse resp = new MrMedcineResponse();
+		resp.setMedicines(docList);
+		res.setResponseCode("200");
+		res.setObject(resp);
+		return res;
+	}
 	@RequestMapping(value="/getMrMedicine")
 	@ResponseBody
 	public Response geMrMedicine(String mrMedicine) {
