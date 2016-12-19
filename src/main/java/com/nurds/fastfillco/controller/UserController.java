@@ -343,9 +343,9 @@ public class UserController {
 		return res;
 	}
 	
-	@RequestMapping(value="/getMrMedicine")
+	@RequestMapping(value="/getMrMedicineId")
 	@ResponseBody
-	public Response getMrMedicine(long id) {
+	public Response getMrMedicineId(long id) {
 		Response res = new Response();
 		MrMedicine docList = null;
 		try {
