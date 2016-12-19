@@ -345,7 +345,7 @@ public class UserController {
 	
 	@RequestMapping(value="/getMrMedicine")
 	@ResponseBody
-	public Response getMrMedicineDetails(long id) {
+	public Response getMrMedicine(long id) {
 		Response res = new Response();
 		MrMedicine docList = null;
 		try {
