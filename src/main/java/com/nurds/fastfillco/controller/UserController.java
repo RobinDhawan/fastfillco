@@ -343,6 +343,28 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/getMrMedicine")
+	@ResponseBody
+	public Response getMrMedicineDetails(long id) {
+		Response res = new Response();
+		MrMedicine docList = null;
+		try {
+
+			docList = docMedicineDao.getMrMedicineDetail(id);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		System.out.println(docList);
+		
+		res.setResponseCode("200");
+		res.setObject(docList);
+		return res;
+	}
+	
 	@RequestMapping(value="/getMrMedicineDetails")
 	@ResponseBody
 	public Response getMrMedicineDetails(String userName) {
