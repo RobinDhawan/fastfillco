@@ -34,6 +34,38 @@ public class DoctorMedicineRequest {
 	  private String userName;
 	  
 	  private String locationName;
+	  
+	  private String couponInsurance;
+	  
+	  private String dosage;
+	  
+	  private String voucherPrice;
+	  
+	  
+
+	public String getCouponInsurance() {
+		return couponInsurance;
+	}
+
+	public void setCouponInsurance(String couponInsurance) {
+		this.couponInsurance = couponInsurance;
+	}
+
+	public String getDosage() {
+		return dosage;
+	}
+
+	public void setDosage(String dosage) {
+		this.dosage = dosage;
+	}
+
+	public String getVoucherPrice() {
+		return voucherPrice;
+	}
+
+	public void setVoucherPrice(String voucherPrice) {
+		this.voucherPrice = voucherPrice;
+	}
 
 	public String getMedicineName() {
 		return medicineName;

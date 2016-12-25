@@ -409,6 +409,28 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/deleteDocMedicine")
+	@ResponseBody
+	public Response deleteDocMedicine(long id) {
+		Response res = new Response();
+		List<MrMedicine> docList = null;
+		try {
+			DoctorMedicine doc = docMedicineDao.getMedicineDetail(id);
+
+			docMedicineDao.delete(doc);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		MrMedcineResponse resp = new MrMedcineResponse();
+		res.setResponseCode("200");
+		res.setObject(resp);
+		return res;
+	}
+	
 	@RequestMapping(value="/updatePassword")
 	@ResponseBody
 	public Response updatePassword(String oldPassword,String newPassword,String userName,boolean isDoc) {
@@ -441,7 +463,6 @@ public class UserController {
 	@ResponseBody
 	public Response deleteMrMedicine(long id) {
 		Response res = new Response();
-		List<MrMedicine> docList = null;
 		try {
 			MrMedicine medicine = docMedicineDao.getMrMedicineDetail(id);
 
@@ -454,7 +475,6 @@ public class UserController {
 			return res;
 		}
 		MrMedcineResponse resp = new MrMedcineResponse();
-		resp.setMedicines(docList);
 		res.setResponseCode("200");
 		res.setObject(resp);
 		return res;
@@ -618,6 +638,9 @@ public class UserController {
 		medicine.setSubClass(medicineReq.getSubClass());
 		medicine.setVoucherExpiryDate(medicineReq.getVoucherExpiryDate());
 		medicine.setVoucherInsurance(medicineReq.getVoucherInsurance());
+		medicine.setDosage(medicineReq.getDosage());
+		medicine.setCouponInsurance(medicine.getCouponInsurance());
+		medicine.setVoucherPrice(medicineReq.getVoucherPrice());
 		Response res = new Response();
 		try {
 			
