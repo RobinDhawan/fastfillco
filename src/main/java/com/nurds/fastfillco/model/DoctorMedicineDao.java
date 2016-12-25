@@ -98,6 +98,14 @@ public class DoctorMedicineDao {
         .getResultList();
   }
   
+  public List<DoctorMedicine> getMedicineDetails(String userName,long id) {
+	    return entityManager.createQuery(
+	        "from DoctorMedicine where doctor.username = :username and location.id = :id")
+	        .setParameter("username", userName)
+	        .setParameter("id", id)
+	        .getResultList();
+	  }
+  
   
   
   public List<MrMedicine> getMrMedicineDetails(String userName) {
