@@ -322,13 +322,13 @@ public class UserController {
 		
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
-	public Response getMedicineDetails(String userName,long id,String user) {
+	public Response getMedicineDetails(String userName,long id,String mr) {
 		Response res = new Response();
 		List<DoctorMedicine> docList = null;
 		try {
-			MedicalRep mr = docMedicineDao.getMedicalRep(user.trim());
 			
-			docList = docMedicineDao.getMedicineDetails(userName,id,mr.getId());
+			
+			docList = docMedicineDao.getMedicineDetails(userName,id,mr);
 		}
 		catch (Exception ex) {
 			System.out.println(ex);

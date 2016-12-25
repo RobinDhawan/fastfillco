@@ -89,9 +89,9 @@ public class DoctorMedicineDao {
   /**
    * Return the user having the passed email.
    */
-  public List<DoctorMedicine> getMedicineDetails(String userName,long id,long user) {
+  public List<DoctorMedicine> getMedicineDetails(String userName,long id,String user) {
     return entityManager.createQuery(
-        "from DoctorMedicine where doctor.username = :username and location.id = :id and mr.id= :user")
+        "from DoctorMedicine where doctor.username = :username and location.id = :id and mr.username= :user")
         .setParameter("username", userName)
         .setParameter("id", id)
         .setParameter("user", user)
