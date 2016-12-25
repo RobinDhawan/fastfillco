@@ -49,7 +49,7 @@ public class UserController {
 		Response res = new Response();
 		try {
 			Location loc = new Location();
-			loc.setLabel("default");
+			loc.setLabel("primary");
 			List locs = new ArrayList<>();
 			
 			userDao.createLocation(loc);
@@ -322,12 +322,12 @@ public class UserController {
 		
 	@RequestMapping(value="/getdoctorMedicineDetails")
 	@ResponseBody
-	public Response getMedicineDetails(String userName,long id) {
+	public Response getMedicineDetails(String userName,long id,String user) {
 		Response res = new Response();
 		List<DoctorMedicine> docList = null;
 		try {
 
-			docList = docMedicineDao.getMedicineDetails(userName,id);
+			docList = docMedicineDao.getMedicineDetails(userName,id,user);
 		}
 		catch (Exception ex) {
 			System.out.println(ex);
