@@ -327,7 +327,7 @@ public class UserController {
 		List<DoctorMedicine> docList = null;
 		try {
 			
-			if(mr==null&&mr.equals("")) {
+			if(mr==null || mr.equals("")) {
 				docList = docMedicineDao.getMedicineDetails(userName,id);
 			} else {
 			docList = docMedicineDao.getMedicineDetails(userName,id,mr);
