@@ -326,7 +326,7 @@ public class UserController {
 		Response res = new Response();
 		List<DoctorMedicine> docList = null;
 		try {
-			MedicalRep mr = docMedicineDao.getMedicalRep(user);
+			MedicalRep mr = docMedicineDao.getMedicalRep(user.trim());
 			
 			docList = docMedicineDao.getMedicineDetails(userName,id,mr.getId());
 		}
