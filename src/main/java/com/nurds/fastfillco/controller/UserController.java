@@ -326,8 +326,9 @@ public class UserController {
 		Response res = new Response();
 		List<DoctorMedicine> docList = null;
 		try {
-
-			docList = docMedicineDao.getMedicineDetails(userName,id,user);
+			MedicalRep mr = docMedicineDao.getMedicalRep(user);
+			
+			docList = docMedicineDao.getMedicineDetails(userName,id,mr.getId());
 		}
 		catch (Exception ex) {
 			System.out.println(ex);

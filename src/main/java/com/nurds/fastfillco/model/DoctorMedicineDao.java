@@ -89,9 +89,9 @@ public class DoctorMedicineDao {
   /**
    * Return the user having the passed email.
    */
-  public List<DoctorMedicine> getMedicineDetails(String userName,long id,String user) {
+  public List<DoctorMedicine> getMedicineDetails(String userName,long id,long user) {
     return entityManager.createQuery(
-        "from DoctorMedicine where doctor.username = :username and location.id = :id and mr.username= :user")
+        "from DoctorMedicine where doctor.username = :username and location.id = :id and mr.id= :user")
         .setParameter("username", userName)
         .setParameter("id", id)
         .setParameter("user", user)
@@ -144,6 +144,13 @@ public class DoctorMedicineDao {
   public DoctorMedicine getMedicineDetail(long id) {
 	    return (DoctorMedicine) entityManager.createQuery(
 	        "from DoctorMedicine where id = :id")
+	        .setParameter("id", id)
+	        .getSingleResult();
+	  }
+  
+  public MedicalRep getMedicalRep(String id) {
+	    return (MedicalRep) entityManager.createQuery(
+	        "from MedicalRep where username = :id")
 	        .setParameter("id", id)
 	        .getSingleResult();
 	  }
