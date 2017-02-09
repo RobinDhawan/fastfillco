@@ -1,6 +1,5 @@
 package com.nurds.fastfillco;
 
-import javax.persistence.Id;
 
 public class DoctorMedicineRequest {
 
@@ -41,7 +40,17 @@ public class DoctorMedicineRequest {
 	  
 	  private String voucherPrice;
 	  
+	  private String medicinePrice;
 	  
+	  
+
+	public String getMedicinePrice() {
+		return medicinePrice;
+	}
+
+	public void setMedicinePrice(String medicinePrice) {
+		this.medicinePrice = medicinePrice;
+	}
 
 	public String getCouponInsurance() {
 		return couponInsurance;

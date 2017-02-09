@@ -533,6 +533,11 @@ public class UserController {
 			doc.setMr(mrMedicine.getMr());
 			doc.setLocation(location);
 			doc.setDoctor(docObj);
+			doc.setCouponsExpiryDate(mrMedicine.getCouponsExpiryDate());
+			doc.setVoucherExpiryDate(mrMedicine.getVoucherExpiryDate());
+			doc.setCouponPrice(mrMedicine.getCouponPrice()+"");
+			doc.setCouponInsurance(mrMedicine.getCouponInsurance());
+			doc.setVoucherInsurance(mrMedicine.getVoucherInsurance());
 			docMedicineDao.create(doc);
 		}
 		catch (Exception ex) {
