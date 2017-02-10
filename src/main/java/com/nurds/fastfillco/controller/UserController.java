@@ -23,6 +23,7 @@ import com.nurds.fastfillco.model.Doctor;
 import com.nurds.fastfillco.model.DoctorMedicine;
 import com.nurds.fastfillco.model.DoctorMedicineDao;
 import com.nurds.fastfillco.model.Location;
+import com.nurds.fastfillco.model.MasterMedication;
 import com.nurds.fastfillco.model.MedicalRep;
 import com.nurds.fastfillco.model.MrMedicine;
 import com.nurds.fastfillco.model.UserDao;
@@ -666,7 +667,15 @@ public class UserController {
 		str.setResponse("Medicine created successfully");
 		return res;
 	}
-
+	 
+	@RequestMapping(value="/getmastermedication")
+	@ResponseBody
+	public List<MasterMedication> getMasterMedication() {
+		
+		List<MasterMedication>  medications = userDao.getMedication();
+		
+		return medications;
+	}
 
 
 } 
