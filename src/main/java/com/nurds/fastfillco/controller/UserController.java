@@ -597,7 +597,7 @@ public class UserController {
 	
 	@RequestMapping(value="/updateMedicineLoc")
 	@ResponseBody
-	public Response updateMedicineLoc(@RequestBody long id,String loc) {
+	public Response updateMedicineLoc(long id,String loc) {
 		Response res = new Response();
 		DoctorMedicine docList = null;
 		try {
