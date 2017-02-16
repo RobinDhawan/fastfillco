@@ -162,6 +162,14 @@ public class DoctorMedicineDao {
 	        .setParameter("id", id)
 	        .getSingleResult();
 	  }
+  
+  public MedicalRep updateLoc(long id,String loc) {
+	    return (MedicalRep) entityManager.createQuery(
+	        "update DoctorMedicine set locationSample = :loc where id = :id ")
+	        .setParameter("loc",loc)
+	        .setParameter("id", id)
+	        .getSingleResult();
+	  }
 
 
   // ------------------------

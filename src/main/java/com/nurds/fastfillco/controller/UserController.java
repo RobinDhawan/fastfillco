@@ -595,6 +595,28 @@ public class UserController {
 		return res;
 	}
 	
+	@RequestMapping(value="/updateMedicineLoc")
+	@ResponseBody
+	public Response updateMedicineLoc(@RequestBody long id,String loc) {
+		Response res = new Response();
+		DoctorMedicine docList = null;
+		try {
+
+			docMedicineDao.updateLoc(id, loc);
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+			res.setResponseCode("500");
+			res.setError("Login Failed");
+			return res;
+		}
+		res.setResponseCode("200");
+		ResponseString str = new ResponseString();
+		str.setResponse("Medicine succesfully updated!");
+		res.setObject(str);
+		return res;
+	}
+	
 	@RequestMapping(value="/doctormedicine/create")
 	@ResponseBody
 	public Response createDocMedicine(@RequestBody DoctorMedicineRequest medicineReq) {
