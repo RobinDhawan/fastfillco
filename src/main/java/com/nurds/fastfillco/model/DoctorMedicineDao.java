@@ -163,12 +163,11 @@ public class DoctorMedicineDao {
 	        .getSingleResult();
 	  }
   
-  public MedicalRep updateLoc(long id,String loc) {
-	    return (MedicalRep) entityManager.createQuery(
+  public int updateLoc(long id,String loc) {
+	    return (int) entityManager.createQuery(
 	        "update DoctorMedicine set locationSample = :loc where id = :id ")
 	        .setParameter("loc",loc)
-	        .setParameter("id", id)
-	        .getSingleResult();
+	        .setParameter("id", id).executeUpdate();
 	  }
 
 
