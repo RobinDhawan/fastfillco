@@ -84,6 +84,11 @@ public class UserDao {
   }
   
   @SuppressWarnings("unchecked")
+  public void putMedication(MasterMedication med) {
+    entityManager.persist(med);
+  }
+  
+  @SuppressWarnings("unchecked")
   public List<Doctor> getAll() {
     return entityManager.createQuery("from Doctor").getResultList();
   }

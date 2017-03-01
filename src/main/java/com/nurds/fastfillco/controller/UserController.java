@@ -698,6 +698,12 @@ public class UserController {
 		
 		return medications;
 	}
+	
+	@RequestMapping(value="/putmastermedication")
+	public void putMasterMedication(@RequestBody MasterMedication medication) {
+		
+	    userDao.putMedication(medication);
+	}
 
 
 } 
