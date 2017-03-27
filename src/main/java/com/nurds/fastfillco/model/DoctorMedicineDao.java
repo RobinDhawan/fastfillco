@@ -75,15 +75,23 @@ public class DoctorMedicineDao {
   }
   
   public List<String> getAllClasses() {
-	   return entityManager.createQuery("select DISTINCT mClass from DoctorMedicine").getResultList();
+	   return entityManager.createQuery("select DISTINCT name from MasterClass").getResultList();
 	  }
   
   public List<String> getAllNames() {
-	   return entityManager.createQuery("select DISTINCT medicineName from mrMedicine").getResultList();
+	   return entityManager.createQuery("select DISTINCT name from MasterMedication").getResultList();
 	  }
   
   public List<String> getAllSubClasses() {
-	   return entityManager.createQuery("select DISTINCT subClass from DoctorMedicine").getResultList();
+	   return entityManager.createQuery("select DISTINCT name from MasterSubClass").getResultList();
+	  }
+  
+  public void insertClass(MasterClass mClass) {
+	   entityManager.persist(mClass);
+	  }
+  
+  public void insertSubClass(MasterSubClass subClass) {
+	   entityManager.persist(subClass);
 	  }
   
   /**

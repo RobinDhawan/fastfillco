@@ -23,7 +23,9 @@ import com.nurds.fastfillco.model.Doctor;
 import com.nurds.fastfillco.model.DoctorMedicine;
 import com.nurds.fastfillco.model.DoctorMedicineDao;
 import com.nurds.fastfillco.model.Location;
+import com.nurds.fastfillco.model.MasterClass;
 import com.nurds.fastfillco.model.MasterMedication;
+import com.nurds.fastfillco.model.MasterSubClass;
 import com.nurds.fastfillco.model.MedicalRep;
 import com.nurds.fastfillco.model.MrMedicine;
 import com.nurds.fastfillco.model.UserDao;
@@ -703,6 +705,22 @@ public class UserController {
 	public void putMasterMedication(@RequestBody MasterMedication medication) {
 		
 	    userDao.putMedication(medication);
+	}
+	
+	@RequestMapping(value="/putmasterclass")
+	public void putMasterClass(String name) {
+		MasterClass m= new MasterClass();
+		m.setName(name);
+		
+	docMedicineDao.insertClass(m);    
+	}
+	
+	@RequestMapping(value="/putmastersubclass")
+	public void putMasterSubClass(String name) {
+		MasterSubClass m= new MasterSubClass();
+		m.setName(name);
+		
+	docMedicineDao.insertSubClass(m);    
 	}
 
 
